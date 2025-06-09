@@ -1,28 +1,41 @@
-# Emotional_Classify
-# GoEmotions Multi-Label Text Classification
+# 🎭 GoEmotions Multi-Label Emotion Classifier
 
-## 🔍 Dataset Used
-- **GoEmotions** from Google Research
-- Source: [https://huggingface.co/datasets/google-research-datasets/go_emotions](https://huggingface.co/datasets/google-research-datasets/go_emotions)
-- Multi-label emotion classification with 28 emotion labels + neutral
+This project fine-tunes a BERT model (`bert-base-uncased`) to perform **multi-label emotion classification** using the [GoEmotions dataset](https://huggingface.co/datasets/google-research-datasets/go_emotions) from Google Research.
+
+---
+
+## 📂 Dataset Used
+
+- **Name**: GoEmotions
+- **Source**: [Hugging Face Datasets](https://huggingface.co/datasets/google-research-datasets/go_emotions)
+- **Type**: Multi-label classification
+- **Labels**: 28 emotion categories + neutral (e.g., *joy*, *anger*, *disappointment*, *love*, *fear*, etc.)
+- **Size**: ~58k English Reddit comments annotated for emotion
+
+---
 
 ## 🧠 Approach Summary
-- Utilized Hugging Face Transformers and Datasets library
-- Used `bert-base-uncased` model with a classification head
-- Applied light preprocessing (tokenization)
-- Fine-tuned on the GoEmotions dataset for multi-label classification
-- Evaluated using precision, recall, F1-score
 
-## 🧪 Model
-- Architecture: BERT + Sigmoid output layer
-- Loss Function: Binary Cross-Entropy
-- Evaluation: `sklearn` metrics
+### 🔧 Preprocessing
+- Used Hugging Face `datasets` to load and preprocess
+- Applied `bert-base-uncased` tokenizer
+- Truncated and padded sequences
 
-## 💡 Key Features
-- Hugging Face `Trainer` API used for efficient training
-- Handles multiple emotion labels per sentence
-- Can be easily extended or deployed with Streamlit/Gradio
+### 🤖 Model
+- Pretrained `bert-base-uncased` as base
+- Classification head with 28 sigmoid-activated outputs
+- Problem type: `multi_label_classification`
+
+### 🧪 Training & Evaluation
+- Trainer API used for training loop and evaluation
+- Evaluation metrics: `Precision`, `Recall`, and `F1-Score` (micro average)
+- Subsampled data for quick training demo (~1000 train, ~500 validation)
+
+---
 
 ## 🛠️ Dependencies
+
+Install all dependencies using:
+
 ```bash
 pip install -r requirements.txt
